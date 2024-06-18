@@ -110,7 +110,7 @@ def userProfile(request,pk):
 login_required(login_url='login')
 def createRoom(request):
     form = RoomForm()
-    #topics = Topic.objects.all()
+    topics = Topic.objects.all()
     if request.method == 'POST':
         topic_name = request.POST.get('topic')
         topic, created = Topic.objects.get_or_create(name=topic_name)
@@ -144,7 +144,7 @@ def updateRoom(request, pk):
        room.save()
        return redirect('home')
 
-    context = {'form': form}
+    context = {'form': form, 'topics':topics, 'room':room}
     return render(request, 'base/room_form.html', context)
 
 @login_required(login_url='login')
@@ -196,3 +196,8 @@ def topicsPage(request):
 def activityPage(request):
     room_messages = Message.objects.all()
     return render(request, 'base/activity.html', {'room_messages': room_messages})
+
+
+@login_required(login_url='login')
+def updateuser(request):
+    return render(request, 'base/update-user.html',)
