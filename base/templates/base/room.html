@@ -17,7 +17,6 @@
           </a>
           <h3>Study Room</h3>
         </div>
-        {% if room.host == request.user %}
         <div class="room__topRight">
           <a href="{% url 'update-room' room.id %}">
             <svg enable-background="new 0 0 24 24" height="32" viewBox="0 0 24 24" width="32"
@@ -47,7 +46,7 @@
             </svg>
           </a>
         </div>
-        {% endif %}
+      
 
       </div>
       <div class="room__box scroll">
@@ -89,9 +88,8 @@
                   </a>
                   <span class="thread__date">{{message.created|timesince}} ago</span>
                 </div>
-
-                
               </div>
+              
               <div class="thread__details">
                 {{message.body}}
               </div>
